@@ -1,0 +1,50 @@
+body {
+    background-color: #19181c;
+    color: #cacaca;
+}
+
+.movie-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-column-gap: 2rem;
+    grid-row-gap: 2rem;
+    margin: 2rem;
+    a {
+        text-decoration: none;
+    }
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h2 {
+        text-align: center;
+        font-size: 1.2rem;
+        flex-grow: 1;
+    }
+
+    img {
+        height: 200px;
+        width: 100%;
+        object-fit: contain;
+    }
+    .movie-title {
+        background-color: #2b2c2f;
+        color: #cacaca;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
+        padding: 0.5rem 0.2rem;
+    }
+}
+
+.movie-casting img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
