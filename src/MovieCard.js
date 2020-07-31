@@ -8,7 +8,7 @@ import { BsStar } from 'react-icons/bs';
 
 const MovieCard = ({ movie }) => {
     const rateToStars = (note) => {
-        if (note == 0) {
+        if (note === 0) {
             return (
                 <>
                     <BsStar />

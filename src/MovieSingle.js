@@ -15,7 +15,7 @@ const MovieSingle = () => {
     const [casting, setCasting] = useState([]);
     const [crew, setCrew] = useState([]);
 
-    const [movieImages, setMovieImages] = useState([]);
+    //const [movieImages, setMovieImages] = useState([]);
 
     const time_convert = (num) => {
         const hours = Math.floor(num / 60);

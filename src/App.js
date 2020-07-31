@@ -9,15 +9,15 @@ import Upcoming from './Upcoming';
 
 function App() {
     const [movies, setMovies] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    //const [isLoading, setIsLoading] = useState(false);
     const [title, setTitle] = useState('');
-    const [upcoming, setUpcoming] = useState(true);
+    //const [upcoming, setUpcoming] = useState(true);
     //const [pageNumber, setPageNumber] = useState('1');
 
     const handleMovieSearch = async (e) => {
         e.preventDefault();
         try {
-            setIsLoading(true);
+            //setIsLoading(true);
             const moviesList = await Axios.get(
                 // `http://www.omdbapi.com/?apikey=d13102&s=${title}&plot=full&page=${pageNumber}`
                 //`https://api.themoviedb.org/3/movie/550?api_key=d40510d8e4acc0141800854b7dabae60`
@@ -25,9 +25,9 @@ function App() {
             );
             //console.log(moviesList.data.results);
             //console.log(moviesList.data.Search);
-            setUpcoming(false);
+            //setUpcoming(false);
             setMovies(moviesList.data.results);
-            setIsLoading(false);
+            //setIsLoading(false);
         } catch (e) {
             console.log('Erreur lors de la récupération des films');
         }
