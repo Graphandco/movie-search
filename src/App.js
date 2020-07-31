@@ -57,7 +57,7 @@ function App() {
                         </form>
 
                         <MovieList list={movies} />
-                        <Upcoming />
+                        <Upcoming list={movies} />
                     </Route>
                     <Route path='/movie/:id' exact>
                         <MovieSingle />

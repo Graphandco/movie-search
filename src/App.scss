@@ -1,6 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700&display=swap');
+
 body {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
     background-color: #19181c;
     color: #cacaca;
+    font-family: 'Mulish', sans-serif;
 }
 
 .movie-list,
@@ -9,12 +15,14 @@ body {
     margin: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
     margin: 2rem;
     a {
         text-decoration: none;
+        overflow: hidden;
+        width: 100%;
     }
 }
 
@@ -22,6 +30,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 100%;
     h2 {
         text-align: center;
         font-size: 1.2rem;
@@ -29,17 +38,54 @@ body {
     }
 
     img {
-        height: 200px;
         width: 100%;
-        object-fit: contain;
+        height: 300px;
+        object-fit: cover;
     }
-    .movie-title {
-        background-color: #2b2c2f;
-        color: #cacaca;
-        text-decoration: none;
+    .movie-desc {
+        background-color: #0d0d0d;
         width: 100%;
         text-align: center;
-        padding: 0.5rem 0.2rem;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        .note {
+            padding-top: 0.5rem;
+            .stars {
+                margin-right: 0.5rem;
+                svg {
+                    fill: gold;
+                    padding: 0 0.05rem;
+                    opacity: 0.75;
+                }
+            }
+            .count {
+                font-size: 0.7rem;
+                color: #cacaca;
+                opacity: 0.5;
+            }
+        }
+        .title {
+            padding: 0.5rem;
+            color: #cacaca;
+            text-decoration: none;
+            flex-grow: 1;
+            display: grid;
+            align-content: center;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        .date-sortie {
+            color: #cacaca;
+            align-self: flex-end;
+            background-color: black;
+            padding: 0.2rem 0.5rem;
+            border-radius: 10px 0 0 0;
+        }
     }
 }
 
