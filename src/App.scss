@@ -1,24 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700&display=swap');
 
+$darkgrey: #0d0d0d;
+$grey: #19181c;
+$white: #cacaca;
+
 body {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background-color: #19181c;
-    color: #cacaca;
+    background-color: $grey;
+    color: $white;
     font-family: 'Mulish', sans-serif;
 }
 
-.movie-list,
-.upcoming {
+header {
+    background-color: $darkgrey;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding: 2rem 2rem 3rem 2rem;
+
+    .logo {
+        width: 200px;
+    }
+
+    .svg-shape {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+        transform: rotate(180deg);
+    }
+
+    .svg-shape svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 60px;
+    }
+
+    .svg-shape .shape-fill {
+        fill: $grey;
+    }
+}
+
+.movie-form {
+    padding: 2rem 2rem 1rem 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.movies-wrapper {
+    padding: 2rem;
+}
+
+.movie-list {
     padding: 0;
     margin: 0;
     list-style: none;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     grid-column-gap: 2rem;
     grid-row-gap: 2rem;
-    margin: 2rem;
     a {
         text-decoration: none;
         overflow: hidden;
@@ -39,11 +84,11 @@ body {
 
     img {
         width: 100%;
-        height: 300px;
+        height: 250px;
         object-fit: cover;
     }
     .movie-desc {
-        background-color: #0d0d0d;
+        background-color: $darkgrey;
         width: 100%;
         text-align: center;
         display: flex;
@@ -59,32 +104,33 @@ body {
                 svg {
                     fill: gold;
                     padding: 0 0.05rem;
-                    opacity: 0.75;
+                    opacity: 0.6;
+                    font-size: 0.8rem;
                 }
             }
             .count {
                 font-size: 0.7rem;
-                color: #cacaca;
+                color: $white;
                 opacity: 0.5;
             }
         }
         .title {
             padding: 0.5rem;
-            color: #cacaca;
+            color: $white;
             text-decoration: none;
             flex-grow: 1;
             display: grid;
             align-content: center;
-            font-size: 1.2rem;
             text-transform: uppercase;
             font-weight: bold;
         }
         .date-sortie {
-            color: #cacaca;
+            color: $white;
             align-self: flex-end;
             background-color: black;
             padding: 0.2rem 0.5rem;
             border-radius: 10px 0 0 0;
+            font-size: 0.8rem;
         }
     }
 }
@@ -94,4 +140,24 @@ body {
     height: 50px;
     object-fit: cover;
     border-radius: 50%;
+}
+
+@media (max-width: 979px) {
+}
+
+@media (max-width: 768px) {
+}
+
+@media (max-width: 500px) {
+    .movie-list {
+        grid-template-columns: 1fr;
+        place-items: center;
+
+        .movie-card {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+    }
 }

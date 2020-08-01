@@ -3,15 +3,15 @@ import Axios from 'axios';
 import MovieCard from './MovieCard';
 
 const Upcoming = () => {
-    const [upcomingMovies, setUpcomingMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
 
     useEffect(() => {
         const handleUpcoming = async () => {
             try {
-                const moviesList = await Axios.get(
+                const upComingMoviesList = await Axios.get(
                     `https://api.themoviedb.org/3/movie/upcoming?api_key=d40510d8e4acc0141800854b7dabae60&language=fr-FR&page=1`
                 );
-                setUpcomingMovies(moviesList.data.results);
+                setMovies(upComingMoviesList.data.results);
             } catch (e) {
                 console.log('Erreur lors de la récupération des films');
             }
@@ -22,9 +22,9 @@ const Upcoming = () => {
     return (
         <>
             <h2>A venir</h2>
-            <div className='upcoming'>
-                {upcomingMovies.map((movie, index) => (
-                    <MovieCard movie={movie} />
+            <div className='upcoming movie-list'>
+                {movies.map((movie, index) => (
+                    <MovieCard movie={movie} key={index} />
                 ))}
             </div>
         </>
