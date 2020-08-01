@@ -32,9 +32,6 @@ const MovieList = (props) => {
         <div className='movies-search'>
             <div className='movie-form'>
                 <form onSubmit={handleMovieSearch}>
-                    <label htmlFor='movie-title'>
-                        <small>Trouver un film</small>
-                    </label>
                     <input
                         onChange={(e) => setTitle(e.target.value)}
                         autoFocus
@@ -42,7 +39,7 @@ const MovieList = (props) => {
                         id='post-title'
                         className='form-control form-control-lg form-control-title'
                         type='text'
-                        placeholder=''
+                        placeholder='Trouver un film'
                         autoComplete='on'
                     />
                     <button>Rechercher</button>
@@ -51,7 +48,7 @@ const MovieList = (props) => {
 
             <div className='movie-list movie-search'>
                 {movies.map((movie) => (
-                    <MovieCard movie={movie} />
+                    <MovieCard movie={movie} key={movie.id} />
                 ))}
             </div>
         </div>

@@ -134,7 +134,7 @@ const MovieCard = ({ movie }) => {
     return (
         <Link to={`/movie/${movie.id}`} key={movie.id}>
             <div className='movie-card'>
-                {console.log(movie)}
+                {/* {console.log(movie)} */}
                 {movie.poster_path === null ? (
                     <img src={noImg} alt={movie.title} />
                 ) : (
@@ -152,10 +152,13 @@ const MovieCard = ({ movie }) => {
                             <span className='count'>({movie.vote_count})</span>
                         </div>
                     )}
-                    <span className='title'>{movie.title}</span>
-                    <span className='date-sortie'>
-                        {movie.release_date.substring(0, 4)}
+                    <span className='title'>
+                        {movie.title.substring(0, 25)}
+                        {movie.title.length > 25 && ' ...'}
                     </span>
+                    {/* <span className='date-sortie'>
+                        {movie.release_date.substring(0, 4)}
+                    </span> */}
                 </div>
             </div>
         </Link>

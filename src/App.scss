@@ -3,18 +3,23 @@
 $darkgrey: #0d0d0d;
 $grey: #19181c;
 $white: #cacaca;
+$font: 'Mulish', sans-serif;
 
 body {
     padding: 0;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 1400px;
     box-sizing: border-box;
     background-color: $grey;
     color: $white;
-    font-family: 'Mulish', sans-serif;
+    font-family: $font;
+    background-image: url('assets/background.jpg');
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 header {
-    background-color: $darkgrey;
+    //background-color: $darkgrey;
     position: relative;
     display: flex;
     justify-content: center;
@@ -50,6 +55,40 @@ header {
     padding: 2rem 2rem 1rem 2rem;
     display: flex;
     justify-content: center;
+
+    form {
+        display: flex;
+    }
+
+    input {
+        padding: 0.25rem;
+        font-size: 1rem;
+        border: none;
+        font-family: $font;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 0.4rem 0.5rem;
+        margin-left: 1px;
+        background-color: white;
+        border: none;
+        color: grey;
+        font-family: $font;
+        font-size: 0.9rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+            background-color: white;
+            color: $darkgrey;
+        }
+    }
+}
+
+.movies-search {
+    padding: 2rem;
 }
 
 .movies-wrapper {
@@ -68,6 +107,7 @@ header {
         text-decoration: none;
         overflow: hidden;
         width: 100%;
+        max-width: 250px;
     }
 }
 
@@ -88,7 +128,7 @@ header {
         object-fit: cover;
     }
     .movie-desc {
-        background-color: $darkgrey;
+        background-color: white;
         width: 100%;
         text-align: center;
         display: flex;
@@ -102,7 +142,7 @@ header {
             .stars {
                 margin-right: 0.5rem;
                 svg {
-                    fill: gold;
+                    fill: black;
                     padding: 0 0.05rem;
                     opacity: 0.6;
                     font-size: 0.8rem;
@@ -110,19 +150,20 @@ header {
             }
             .count {
                 font-size: 0.7rem;
-                color: $white;
+                color: $darkgrey;
                 opacity: 0.5;
             }
         }
         .title {
-            padding: 0.5rem;
-            color: $white;
+            padding: 0.5rem 0.5rem 0.8rem 0.5rem;
+            color: $darkgrey;
             text-decoration: none;
             flex-grow: 1;
             display: grid;
             align-content: center;
-            text-transform: uppercase;
+            //text-transform: uppercase;
             font-weight: bold;
+            font-size: 1.1rem;
         }
         .date-sortie {
             color: $white;
@@ -135,17 +176,109 @@ header {
     }
 }
 
-.movie-casting img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
+.movie-single {
+    .backdrop {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: 0;
+        right: 0;
+        z-index: -2;
+    }
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        background-color: rgba($darkgrey, 0.8);
+        z-index: -1;
+    }
+    h2 {
+        margin-left: 2rem;
+        text-transform: uppercase;
+        font-size: 1.8rem;
+    }
+    .content {
+        padding: 2rem;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .top-content {
+        display: grid;
+        grid-template-columns: min-content auto;
+        align-items: center;
+        column-gap: 8vw;
+        row-gap: 2rem;
+        margin-bottom: 2rem;
+        background-color: rgba($darkgrey, 0.6);
+
+        .details {
+            max-width: 700px;
+            padding: 1rem;
+
+            & > div {
+                margin-bottom: 0.5rem;
+            }
+
+            span {
+                font-weight: bold;
+                color: white;
+                &.genres-list,
+                &.realisator {
+                    font-weight: normal;
+                    color: $white;
+                }
+            }
+
+            h2 {
+                margin: 1rem 0;
+                color: white;
+                font-size: 2rem;
+            }
+        }
+    }
+
+    .movie-casting {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        grid-gap: 2rem;
+
+        .actor {
+            background-color: white;
+            color: $darkgrey;
+            padding: 1rem;
+
+            &-name {
+                font-weight: bold;
+            }
+            &-perso {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+        }
+
+        img {
+            max-width: 100%;
+        }
+    }
 }
 
 @media (max-width: 979px) {
 }
 
 @media (max-width: 768px) {
+    .movie-single {
+        .top-content {
+            grid-template-columns: 1fr;
+
+            .poster {
+                justify-self: center;
+            }
+        }
+    }
 }
 
 @media (max-width: 500px) {
