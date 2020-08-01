@@ -282,15 +282,38 @@ header {
 }
 
 @media (max-width: 500px) {
+    header {
+        padding: 2rem;
+    }
+    .movie-form {
+        padding: 0;
+    }
+    .movies-wrapper {
+        padding: 1rem;
+        h2 {
+            margin-top: 0;
+        }
+    }
+    .movies-search {
+        padding: 1rem;
+    }
     .movie-list {
-        grid-template-columns: 1fr;
-        place-items: center;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 1rem;
 
         .movie-card {
             img {
                 width: 100%;
                 height: auto;
             }
+        }
+    }
+    .movie-single {
+        .content {
+            padding: 1rem;
+        }
+        .movie-casting {
+            grid-gap: 1rem;
         }
     }
 }

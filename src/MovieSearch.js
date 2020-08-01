@@ -34,7 +34,6 @@ const MovieList = (props) => {
                 <form onSubmit={handleMovieSearch}>
                     <input
                         onChange={(e) => setTitle(e.target.value)}
-                        autoFocus
                         name='title'
                         id='post-title'
                         className='form-control form-control-lg form-control-title'
