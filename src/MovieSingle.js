@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import Axios from 'axios';
+import ReactPlayer from 'react-player';
+import { Link } from 'react-router-dom';
+import { IoMdArrowRoundBack } from 'react-icons/io';
+import Allocine from './assets/allocine.png';
 
 import Casting from './Casting';
+import MovieRate from './MovieRate';
 
 const MovieSingle = () => {
     const { id } = useParams();
 
-    const [title, setTitle] = useState('');
+    const [movie, setMovie] = useState('');
     const [poster, setPoster] = useState('');
     const [year, setYear] = useState('');
     const [genres, setGenres] = useState([]);
     const [duree, setDuree] = useState('');
-    const [synopsis, setSynopsis] = useState('');
     const [casting, setCasting] = useState([]);
     const [crew, setCrew] = useState([]);
     const [image, setImage] = useState([]);
     const imagePath = `https://image.tmdb.org/t/p/w1280${image}`;
+    const [video, setVideo] = useState([]);
 
     //const [movieImages, setMovieImages] = useState([]);
 
@@ -32,12 +37,11 @@ const MovieSingle = () => {
                 const movieItem = await Axios.get(
                     `https://api.themoviedb.org/3/movie/${id}?api_key=d40510d8e4acc0141800854b7dabae60&append_to_response=credits&language=fr-Fr`
                 );
-                console.log(movieItem.data);
-                setTitle(movieItem.data.title);
+                //console.log(movieItem.data);
+                setMovie(movieItem.data);
                 setPoster(movieItem.data.poster_path);
                 setYear(movieItem.data.release_date);
                 setDuree(time_convert(movieItem.data.runtime));
-                setSynopsis(movieItem.data.overview);
                 setGenres(movieItem.data.genres);
                 setCasting(movieItem.data.credits.cast);
                 setCrew(movieItem.data.credits.crew);
@@ -62,6 +66,19 @@ const MovieSingle = () => {
         MovieBackdrop();
     }, [id]);
 
+    useEffect(() => {
+        const MovieVideo = async () => {
+            try {
+                const movieVideo = await Axios.get(
+                    `https://api.themoviedb.org/3/movie/${id}/videos?api_key=d40510d8e4acc0141800854b7dabae60`
+                );
+
+                setVideo(movieVideo.data.results[0].key);
+            } catch (e) {}
+        };
+        MovieVideo();
+    }, [id]);
+
     const castShort = casting.slice(0, 10);
 
     let directors = [];
@@ -76,16 +93,20 @@ const MovieSingle = () => {
             <img src={imagePath} alt='Backdrop' className='backdrop' />
             <div className='overlay'></div>
             <div className='content'>
+                <Link to={'/'} className='back'>
+                    <IoMdArrowRoundBack /> Retour
+                </Link>
                 <div className='top-content'>
                     <div className='poster'>
                         <img
                             src={`http://image.tmdb.org/t/p/w185/${poster}`}
-                            alt={title}
+                            alt={movie.title}
                             className='poster'
                         />
                     </div>
                     <div className='details'>
-                        <h2>{title}</h2>
+                        <h2>{movie.title}</h2>
+                        <MovieRate movie={movie} />
                         <div className='year'>
                             <span>Année : </span>
                             {year.substr(0, 4)}
@@ -113,12 +134,26 @@ const MovieSingle = () => {
                         </div>
                         <div className='movie-synopsis'>
                             <span>Pitch : </span>
-                            {synopsis}
+                            {movie.overview}
                         </div>
+                        <a
+                            className='allocine'
+                            href={`http://www.allocine.fr/recherche/?q=${movie.title}`}
+                            target='blank'
+                            title={`Rechercher ${movie.title} sur Allociné`}
+                        >
+                            <img src={Allocine} alt='allocine' />
+                        </a>
                     </div>
                 </div>
 
                 <Casting acteurs={castShort} realisation={crew} />
+                <div className='video'>
+                    <ReactPlayer
+                        controls
+                        url={`https://www.youtube.com/watch?v=${video}`}
+                    />
+                </div>
             </div>
         </div>
     );
