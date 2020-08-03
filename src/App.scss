@@ -191,6 +191,9 @@ header {
         transform: translate(-50%, -50%);
         bottom: 0;
         right: 0;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
         z-index: -2;
     }
     .overlay {
